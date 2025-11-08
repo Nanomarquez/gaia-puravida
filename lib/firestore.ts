@@ -34,9 +34,11 @@ const toDate = (value: unknown) => {
   return undefined;
 };
 
-const removeUndefined = <T extends Record<string, unknown>>(object: T) => {
+const removeUndefined = <T extends object>(object: T) => {
   return Object.fromEntries(
-    Object.entries(object).filter(([, value]) => value !== undefined),
+    Object.entries(object as Record<string, unknown>).filter(
+      ([, value]) => value !== undefined,
+    ),
   ) as T;
 };
 
